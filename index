@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mony – منصة مالية عالمية</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="logo">
+      <span class="logo-mark">m</span>
+      <span class="logo-text">mony</span>
+    </div>
+
+    <div class="top-actions">
+      <div class="language-switcher">
+        <select id="languageSelect">
+          <option value="ar">العربية</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+      <button class="btn btn-ghost" id="btnGoToLogin">تسجيل الدخول</button>
+      <button class="btn btn-primary" id="btnGoToRegister">إنشاء حساب</button>
+    </div>
+  </header>
+
+  <main id="appRoot">
+
+    <span>آخر معاملة</span>
+      
+    <!-- صفحة الترحيب | الهبوط -->
+    <section class="hero" data-page="landing">
+      <div class="hero-content">
+        <h1 class="hero-title">mony – طريقتك الأذكى لإدارة أموالك</h1>
+        <p class="hero-subtitle">
+          منصة مالية رقمية بتصميم Flat Premium، تربطك بعالم من الفرص، بثقة وشفافية وجمال بصري.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="btnStartNow">ابدأ الآن</button>
+          <button class="btn btn-ghost" id="btnLearnMore">قراءة المزيد</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="card-header">
+          <span>نظرة سريعة على حسابك</span>
+        </div>
+        <div class="card-body">
+          <div class="stat-row">
+            <span>الرصيد الكلي</span>
+            <strong>$12,480.00</strong>
+          </div>
+          <div class="stat-row">
+       
+       <span>قبل ٢ ساعات</span>
+          </div>
+          <div class="stat-row">
+            <span>حالة الحساب</span>
+            <span class="badge badge-gold">VIP</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- صفحة تسجيل الدخول -->
+    <section class="page hidden" data-page="login">
+      <h2>تسجيل الدخول إلى حسابك</h2>
+      <form class="form">
+        <label>
+          البريد الإلكتروني
+          <input type="email" placeholder="you@example.com" />
+        </label>
+        <label>
+          كلمة المرور
+          <input type="password" placeholder="••••••••" />
+        </label>
+        <button type="submit" class="btn btn-primary full-width">دخول</button>
+      </form>
+      <button class="link-btn" id="backToLandingFromLogin">العودة إلى الصفحة الرئيسية</button>
+    </section>
+
+    <!-- صفحة إنشاء حساب -->
+    <section class="page hidden" data-page="register">
+      <h2>إنشاء حساب جديد</h2>
+      <form class="form">
+        <label>
+          الاسم الكامل
+          <input type="text" placeholder="الاسم كما في الهوية" />
+        </label>
+        <label>
+          البريد الإلكتروني
+          <input type="email" placeholder="you@example.com" />
+        </label>
+        <label>
+          كلمة المرور
+          <input type="password" placeholder="اختر كلمة مرور قوية" />
+        </label>
+        <button type="submit" class="btn btn-primary full-width">إنشاء الحساب</button>
+      </form>
+      <button class="link-btn" id="backToLandingFromRegister">العودة إلى الصفحة الرئيسية</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+// التبديل بين الصفحات البسيطة
+const pages = document.querySelectorAll("[data-page]");
+const btnGoToLogin = document.getElementById("btnGoToLogin");
+const btnGoToRegister = document.getElementById("btnGoToRegister");
+const backToLandingFromLogin = document.getElementById("backToLandingFromLogin");
+const backToLandingFromRegister = document.getElementById("backToLandingFromRegister");
+const btnStartNow = document.getElementById("btnStartNow");
+const btnLearnMore = document.getElementById("btnLearnMore");
+const languageSelect = document.getElementById("languageSelect");
+
+function showPage(name) {
+  pages.forEach((section) => {
+    const pageName = section.getAttribute("data-page");
+    section.classList.toggle("hidden", pageName !== name);
+  });
+}
+
+if (btnGoToLogin) {
+  btnGoToLogin.addEventListener("click", () => showPage("login"));
+}
+
+if (btnGoToRegister) {
+  btnGoToRegister.addEventListener("click", () => showPage("register"));
+}
+
+if (backToLandingFromLogin) {
+  backToLandingFromLogin.addEventListener("click", () => showPage("landing"));
+}
+
+if (backToLandingFromRegister) {
+  backToLandingFromRegister.addEventListener("click", () => showPage("landing"));
+}
+
+if (btnStartNow) {
+  btnStartNow.addEventListener("click", () => showPage("register"));
+}
+
+if (btnLearnMore) {
+  btnLearnMore.addEventListener("click", () => {
+    alert("هنا ستكون صفحة (قراءة المزيد) لاحقًا داخل mony.");
+  });
+}
+
+// تبديل اللغة (مبدئي – واجهة فقط)
+if (languageSelect) {
+  languageSelect.addEventListener("change", (e) => {
+    const lang = e.target.value;
+    console.log("Language changed to:", lang);
+    // لاحقًا نربطها بنسخ حقيقية متعددة اللغات
+  });
+}
+:root {
+  --color-bg: #ffffff;
+  --color-bg-soft: #f4f6f9;
+  --color-primary: #2d6cdf;
+  --color-primary-soft: #e0ebff;
+  --color-gold: #d4a017;
+  --color-text-main: #1a2a3a;
+  --color-text-soft: #6b7b8c;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --shadow-soft: 0 18px 40px rgba(15, 35, 52, 0.16);
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background: var(--color-bg-soft);
+  color: var(--color-text-main);
+}
+
+/* الشريط العلوي */
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--color-bg);
+  box-shadow: 0 1px 0 rgba(15, 35, 52, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-gold));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.logo-text {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+}
+
+/* الأزرار واللغات */
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.language-switcher select {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #d0d7e2;
+  background: var(--color-bg-soft);
+  color: var(--color-text-main);
+}
+
+.btn {
+  border-radius: 999px;
+  padding: 8px 16px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(45, 108, 223, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(45, 108, 223, 0.4);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-main);
+  border: 1px solid #d0d7e2;
+}
+
+.btn-ghost:hover {
+  background: rgba(208, 215, 226, 0.25);
+}
+
+/* منطقة الهبوط */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+  gap: 24px;
+  padding: 24px 20px 40px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-title {
+  font-size: 26px;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.hero-subtitle {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 15px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* البطاقة الجانبية */
+
+.hero-card {
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 18px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--color-text-soft);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.badge-gold {
+  background: rgba(212, 160, 23, 0.1);
+  color: var(--color-gold);
+}
+
+/* الصفحات الداخلية */
+
+.page {
+  padding: 24px 20px 40px;
+}
+
+.page.hidden {
+  display: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.form input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e2;
+  font-size: 14px;
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.link-btn {
+  margin-top: 14px;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* استجابة للجوال */
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-card {
+    order: -1;
+  }
+}
